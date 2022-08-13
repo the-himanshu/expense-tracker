@@ -1,0 +1,10 @@
+.expense-date {
+    border-style: solid;
+    border-radius: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+    color: white;
+    background-color: black;
+    font-weight: bolder;
+}

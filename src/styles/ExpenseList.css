@@ -1,0 +1,9 @@
+.expense-item-outer {
+    border-style: solid;
+    border-radius: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    width: 80%;
+}
