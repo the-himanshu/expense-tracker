@@ -8,3 +8,15 @@
     background-color: black;
     font-weight: bolder;
 }
+
+.expense-date-month {
+    font-size: 32px;
+}
+
+.expense-date-date {
+    font-size: 48px;
+}
+
+.expense-date-year {
+    font-size: 32px;
+}

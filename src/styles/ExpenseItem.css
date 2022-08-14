@@ -8,9 +8,35 @@
 
 .expense-item-right-subsection {
     flex: 75%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: larger;
-    font-weight: bold;
-    text-align: left;
-    margin-top: 10%;
+    display: flex;
+}
+
+.expense-title {
+    flex: 70%;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-shadow: 0 0 0.15em #1da9cc;
+    user-select: none;
+    white-space: nowrap;
+    text-align: center;
+    align-self: center;
+}
+
+.expense-cost {
+    flex: 30%;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-shadow: 0 0 0.15em #1da9cc;
+    user-select: none;
+    white-space: nowrap;
+    text-align: center;
+    align-self: center;
 }
