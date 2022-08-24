@@ -1,0 +1,17 @@
+.monthly-expense-bar {
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: #f8dfff;
+    text-align: center;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.no-expense-text {
+    font-size: large;
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+}
