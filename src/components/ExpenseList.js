@@ -1,38 +1,66 @@
-import ExpenseItem from "./ExpenseItem"
-import "../styles/ExpenseList.css"
+import ExpenseItem from "./ExpenseItem";
+import ExpenseFilter from "./ExpenseFilter";
+import ExpenseChart from "./ExpenseChart";
+import "../styles/ExpenseList.css";
+import { useState } from "react";
 
-function ExpenseList() {
-    const expenseList = [
-        {
-            "title" : "Car Parking",
-            "cost" : "Rs. 120",
-            "date" : new Date(2022, 2, 2)
-        },
-        {
-            "title" : "Movie Night",
-            "cost" : "Rs. 1800",
-            "date" : new Date(2022, 2, 14)
-        },
-        {
-            "title" : "Uber Fare",
-            "cost" : "Rs. 150",
-            "date" : new Date(2022, 4, 4)
-        },
-        {
-            "title" : "Sport Shoes",
-            "cost" : "Rs. 5000",
-            "date" : new Date(2022, 6, 24)
-        }
-    ]
+function ExpenseList(props) {
+  //get original expense list from props
+  const expenseList = props.expenseList;
 
-    return (
-        <div>
-        <div className="expense-item-outer"><ExpenseItem date={expenseList[0].date} title={expenseList[0].title} cost={expenseList[0].cost}></ExpenseItem></div>
-        <div className="expense-item-outer"><ExpenseItem date={expenseList[1].date} title={expenseList[1].title} cost={expenseList[1].cost}></ExpenseItem></div>
-        <div className="expense-item-outer"><ExpenseItem date={expenseList[2].date} title={expenseList[2].title} cost={expenseList[2].cost}></ExpenseItem></div>
-        <div className="expense-item-outer"><ExpenseItem date={expenseList[3].date} title={expenseList[3].title} cost={expenseList[3].cost}></ExpenseItem></div>
-        </div>
-    )
+  //create filtered expense list and current filter value
+  const [filteredExpenseList, setFilteredExpenseList] = useState([]);
+  const [selectedFilterValue, setFilterValue] = useState("");
+
+  if(expenseList.length !== filteredExpenseList.length && selectedFilterValue === 'None') {
+    setFilteredExpenseList(expenseList)
+  }
+
+  //using conditional content mapping to return the required content
+  let expenseListContent = <div className="no-expense-test">No Expenses found</div>;
+
+  if (filteredExpenseList.length > 0) {
+    expenseListContent = (
+      <div>
+        {filteredExpenseList.map((expense) => (
+          <ExpenseItem
+            key={expense.id}
+            title={expense.title}
+            cost={expense.cost}
+            date={expense.date}
+          ></ExpenseItem>
+        ))}
+      </div>
+    );
+  }
+
+  //this function will be triggered from inside the expense filter component
+  function onFilterValueChange(value) {
+    setFilterValue(value);
+
+    //the main logic for filtering the expenses is written over here
+    if(value !== 'None') {
+      let expenseListOnFilterChange = expenseList.filter(
+        (expense) => expense.date.toString().split(" ")[3] === value
+      );
+      setFilteredExpenseList(expenseListOnFilterChange);
+    }
+  }
+
+  return (
+    <div className="main-body">
+      <div>
+        <ExpenseFilter
+          selected={selectedFilterValue}
+          changeFilterValue={onFilterValueChange}
+        ></ExpenseFilter>
+      </div>
+      <div className="expense-chart">
+        <ExpenseChart expensesList={filteredExpenseList}></ExpenseChart>
+      </div>
+      {expenseListContent}
+    </div>
+  );
 }
 
-export default ExpenseList
+export default ExpenseList;

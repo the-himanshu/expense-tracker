@@ -11,3 +11,22 @@
     background-color: gray;
     box-shadow: 6px 6px 2px 1px rgba(0, 0, 0, 0.25);
 }
+
+.main-body {
+    border: 2% solid white;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    box-shadow: 6px 6px 2px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 2%;
+    padding: 2%;
+}
+
+.no-expense-test {
+    font-size: large;
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+}

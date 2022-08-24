@@ -1,0 +1,27 @@
+.chart-bar-outer {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.chart-bar-inner {
+  height: 10px;
+  width: 90%;
+  border-radius: 12px;
+  background-color:white;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: 0.5%;
+}
+
+.chart-bar-fill {
+  background-color: #4826b9;
+  border: 1px solid #313131;
+  height: 100%;
+}
+ .chart-bar-label {
+  min-width: 50px;
+ }

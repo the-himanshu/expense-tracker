@@ -1,6 +1,7 @@
 import '../styles/ExpenseDate.css'
 
 function ExpenseDate(props) {
+    //fetch month, day and year from date
     const month = props.date.toLocaleString("en-US", {month: 'long'})
     const day = props.date.getDate()
     const year = props.date.getFullYear()

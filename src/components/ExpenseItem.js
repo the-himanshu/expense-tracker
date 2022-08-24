@@ -15,7 +15,7 @@ function ExpenseItem(props) {
                     {title}
                 </div>
                 <div className="expense-cost">
-                    {cost}
+                    Rs. {cost}
                 </div>
             </div>
         </div>
