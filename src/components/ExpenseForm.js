@@ -5,13 +5,17 @@ function ExpenseForm(props) {
     const [currentTitleValue, setTitle] = useState('')
     const [currentCostValue, setCost] = useState('')
     const [currentDateValue, setDate] = useState('')
+    const [isCostValid, setIsCostValid] = useState(1)
+    const [isTitleValid, setIsTitleValid] = useState(1)
+
+    const placeholderArray = ['Please enter a valid amount', '', 'Please enter a valid title', '']
 
     function titleChangeHandler(event) {
         setTitle(event.target.value)
     }
 
     function costChangeHandler(event) {
-        setCost(event.target.value)
+        setCost(event.target.value.trim())
     }
 
     function dateChangeHandler(event) {
@@ -21,6 +25,23 @@ function ExpenseForm(props) {
     function createNewExpense(event) {
         //it will prevent the normal execution of the submit event
         event.preventDefault()
+        let breakFlag = false
+
+        if(!currentCostValue || currentCostValue === 0) {
+            setIsCostValid(0)
+            breakFlag = true
+        } else if(isCostValid === 0) {
+            setIsCostValid(1)
+        }
+
+        if(!currentTitleValue || currentTitleValue.trim().length === 0) {
+            setIsTitleValid(0)
+            breakFlag = true
+        } else if(isTitleValid === 0) {
+            setIsTitleValid(1)
+        }
+
+        if(breakFlag) return
 
         const newExpense = {
             id: Math.random(),
@@ -28,6 +49,7 @@ function ExpenseForm(props) {
             cost: parseInt(currentCostValue),
             date: new Date(currentDateValue)
         }
+        console.log("🚀 ~ file: ExpenseForm.js ~ line 49 ~ createNewExpense ~ newExpense", newExpense)
         
         //trigger the event in the parent component
         props.onSaveExpenseData(newExpense)
@@ -40,13 +62,13 @@ function ExpenseForm(props) {
 
     return (
         <form className="expense-form" onSubmit={createNewExpense}>
-            <div className="expense-form-input-field">
+            <div className={`expense-form-input-field ${isTitleValid == 1 ? '' : 'invalid'}`}>
                 <label>Title</label>
-                <input type="text" value={currentTitleValue} onChange={titleChangeHandler}></input>
+                <input type="text" value={currentTitleValue} onChange={titleChangeHandler} placeholder={placeholderArray[isTitleValid + 2]}></input>
             </div>
-            <div className="expense-form-input-field">
+            <div className={`expense-form-input-field ${isCostValid == 1 ? '' : 'invalid'}`}>
                 <label>Cost</label>
-                <input type="Number" value={currentCostValue} min="1" step="1" onChange={costChangeHandler}></input>
+                <input type="Number" value={currentCostValue} min="1" step="1" onChange={costChangeHandler} placeholder={placeholderArray[isCostValid]}></input>
             </div>
             <div className="expense-form-input-field">
                 <label>Date</label>
