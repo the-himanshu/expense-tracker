@@ -30,3 +30,17 @@
     font-weight: bolder;
     text-align: center;
 }
+
+.generate-report-button {
+  text-align: center;
+  background-color: black;
+  font: inherit;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 20%;
+  max-width: 100%;
+  margin-left: 40%;
+  margin-top: 2%;
+}

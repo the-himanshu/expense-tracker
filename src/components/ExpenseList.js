@@ -3,14 +3,30 @@ import ExpenseFilter from "./ExpenseFilter";
 import ExpenseChart from "./ExpenseChart";
 import "../styles/ExpenseList.css";
 import { useState } from "react";
+import { jsPDF } from "jspdf";
+import moment from "moment";
+
+function compareObjects(a, b) {
+  const A = moment(a.date).utc().format('DD-MM-YYYY');
+  const B = moment(b.date).utc().format('DD-MM-YYYY');
+  const isAfter = moment(A).isAfter(moment(B));
+  if ( !isAfter ){
+    return -1;
+  }
+  if ( isAfter ){
+    return 1;
+  }
+  return 0;
+}
 
 function ExpenseList(props) {
   //get original expense list from props
-  const expenseList = props.expenseList;
+  let expenseList = props.expenseList;
+  expenseList = expenseList.sort(compareObjects)
 
   //create filtered expense list and current filter value
   const [filteredExpenseList, setFilteredExpenseList] = useState([]);
-  const [selectedFilterValue, setFilterValue] = useState("");
+  const [selectedFilterValue, setFilterValue] = useState('None');
 
   if(expenseList.length !== filteredExpenseList.length && selectedFilterValue === 'None') {
     setFilteredExpenseList(expenseList)
@@ -30,6 +46,7 @@ function ExpenseList(props) {
             date={expense.date}
           ></ExpenseItem>
         ))}
+      <button className="generate-report-button" onClick={generateReportHandler}>Generate Report</button>
       </div>
     );
   }
@@ -45,6 +62,22 @@ function ExpenseList(props) {
       );
       setFilteredExpenseList(expenseListOnFilterChange);
     }
+  }
+
+  //function to download a pdf report containing all expenses
+  function generateReportHandler() {
+    var doc = new jsPDF('p', 'in', [12 ,16]);
+    doc.setFontSize(12);
+    doc.setFont("Helvetica");
+    let textArray = ["PDF Report for expenses"]
+
+    filteredExpenseList.forEach((expenseData, i) => {
+      let text = "Date: " + expenseData.date + "     |    Title: " + expenseData.title + "     |    Cost: Rs. " + expenseData.cost + ""
+      textArray.push(text)
+    })
+
+    doc.text(textArray, 1, 1)
+    doc.save('Report.pdf');
   }
 
   return (

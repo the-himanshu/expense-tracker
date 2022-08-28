@@ -20,6 +20,10 @@ function ExpenseFilter(props) {
           <option value='2021'>2021</option>
           <option value='2020'>2020</option>
           <option value='2019'>2019</option>
+          <option value='2022'>2018</option>
+          <option value='2021'>2017</option>
+          <option value='2020'>2016</option>
+          <option value='2019'>2015</option>
         </select>
     </div>
   );
