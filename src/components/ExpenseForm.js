@@ -49,7 +49,6 @@ function ExpenseForm(props) {
             cost: parseInt(currentCostValue),
             date: new Date(currentDateValue)
         }
-        console.log("🚀 ~ file: ExpenseForm.js ~ line 49 ~ createNewExpense ~ newExpense", newExpense)
         
         //trigger the event in the parent component
         props.onSaveExpenseData(newExpense)
