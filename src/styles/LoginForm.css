@@ -1,0 +1,55 @@
+.login-form {
+  justify-content: center;
+  border: 2px solid;
+  border-radius: 20px;
+  margin-left: 35%;
+  margin-right: 35%;
+  width: 30%;
+  padding: 2%;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  text-align: center;
+}
+
+.login-form-input-field label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.login-form-input-field input {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid black;
+  width: 20rem;
+  max-width: 100%;
+}
+
+.login-form-input-field.invalid input {
+  border-color: red;
+  background-color: rgb(237, 166, 166);
+}
+
+.login-form-action {
+  display: inline-block;
+  padding-top: 30px;
+}
+
+.login-form-button {
+  text-align: center;
+  background-color: black;
+  font: inherit;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 10rem;
+  max-width: 100%;
+  margin-left: 4px;
+}
+
+::placeholder {
+  color: black;
+}
