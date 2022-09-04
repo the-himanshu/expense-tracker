@@ -77,7 +77,11 @@ function ExpenseList(props) {
     })
 
     doc.text(textArray, 1, 1)
-    doc.save('Report.pdf');
+    
+    //here we are using the stored user information in the local storage to create the report file
+    let tokenObject = localStorage.getItem('tokenObject')
+    tokenObject = JSON.parse(tokenObject)
+    doc.save(`Report_${tokenObject.user?.username}_${tokenObject.user?._id}.pdf`);
   }
 
   return (
